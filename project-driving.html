@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safer Roads in Breda (ANWB) - Artjom Musaelans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        body.github-hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.certificate-hover {
+            background: #4a4a4a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .section-title,
+        body.github-hover .metric-item,
+        body.github-hover .nav a,
+        body.github-hover .skill-category li {
+            color: #999;
+        }
+        
+        body.certificate-hover .section-title,
+        body.certificate-hover .metric-item,
+        body.certificate-hover .nav a,
+        body.certificate-hover .skill-category li {
+            color: #bbb;
+        }
+        
+        body.github-hover .nav {
+            border-bottom-color: #333;
+        }
+        
+        body.certificate-hover .nav {
+            border-bottom-color: #666;
+        }
+        
+        body.github-hover .hero,
+        body.github-hover .full-section,
+        body.github-hover .cta-section {
+            border-top-color: #333;
+        }
+        
+        body.certificate-hover .hero,
+        body.certificate-hover .full-section,
+        body.certificate-hover .cta-section {
+            border-top-color: #666;
+        }
+        
+        body.github-hover .metrics-banner {
+            border-top-color: #333;
+            border-bottom-color: #333;
+        }
+        
+        body.certificate-hover .metrics-banner {
+            border-top-color: #666;
+            border-bottom-color: #666;
+        }
+        
+        body.github-hover .tech-badge {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+        
+        body.certificate-hover .tech-badge {
+            background: #5a5a5a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .result-card {
+            background: #2d2d2d;
+        }
+        
+        body.certificate-hover .result-card {
+            background: #5a5a5a;
+        }
+        
+        body.github-hover .result-card p {
+            color: #999;
+        }
+        
+        body.certificate-hover .result-card p {
+            color: #bbb;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .nav {
+            padding: 40px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .nav a {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: #1a1a1a;
+        }
+        
+        .hero {
+            padding: 80px 0 60px;
+        }
+        
+        .project-label {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .metrics-banner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 32px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .metric-item {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 80px 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        
+        .section-content h3 {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+        
+        .section-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .section-content ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .section-content li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        .section-content li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+        
+        .full-section {
+            padding: 80px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .tech-badge {
+            padding: 8px 20px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .result-card {
+            padding: 32px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .result-card h4 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .result-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .result-number {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+        
+        .skill-category h4 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            font-size: 15px;
+            color: #666;
+            padding-left: 0;
+            margin-bottom: 8px;
+        }
+        
+        .skill-category li:before {
+            content: none;
+        }
+        
+        .cta-section {
+            padding: 100px 0;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-size: 32px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2d2d2d;
+            color: #ffffff;
+            border-color: #2d2d2d;
+        }
+        
+        body.github-hover .btn-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-primary:hover {
+            background: #f0f0f0;
+            border-color: #f0f0f0;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary:hover {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        body.certificate-hover .btn-primary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.certificate-hover .btn-secondary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.certificate-hover .btn-secondary:hover {
+            background: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 0;
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .results-grid,
+            .skills-list {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .metrics-banner {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="project-label">Project 04</div>
+            <h1>Safer Roads in Breda (ANWB)</h1>
+            <div class="metrics-banner">
+                <span class="metric-item">Data Scientist</span>
+                <span class="metric-item">Team of 5</span>
+                <span class="metric-item">XGBoost Model</span>
+                <span class="metric-item">Streamlit Deployment</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="two-column">
+        <div style="max-width: 1200px; margin: 0 auto; display: contents;">
+            <div class="section-content">
+                <div class="section-title">Overview</div>
+                <h3>Predicting street-level road safety risk for ANWB</h3>
+                <p>Developed a production-ready machine learning application for ANWB that predicts street-level road safety risk in Breda, supporting the organization's mission of "preventing instead of insuring."</p>
+                <p>As the Data Scientist on Team No. 6, I was responsible for the complete ML pipeline from model selection through deployment, including XGBoost development, optimization, and contributing to the Streamlit application interface.</p>
+            </div>
+            
+            <div class="section-content">
+                <div class="section-title">The Challenge</div>
+                <h3>Building localized, predictive safety features</h3>
+                <p>The Netherlands has invested heavily in road safety programs, reducing road deaths by 1600-1700 between 1988-2007. However, existing navigation apps lack localized, predictive safety features.</p>
+                <p>The challenge was integrating multiple datasets (ANWB Safe Driving 2017-2023, KNMI Weather, Bron Accidents) to create street-specific risk predictions that combine historical incident data with real-time weather conditions for proactive route planning.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">My Role & Technical Approach</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 32px;">Leading ML development in collaborative team environment</h3>
+            
+            <div class="two-column" style="padding: 0; gap: 60px;">
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">My Core Responsibilities (Data Scientist)</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Designed and implemented XGBoost classification models for street-level risk prediction
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Developed iterative modeling pipeline with Proof-of-Concept (POC) validation approach
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Performed comprehensive model evaluation using RMSE, Recall, and MAE metrics
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Optimized hyperparameters using GridSearchCV for best performance
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Trained multiple model variants (with/without coordinate data) to prevent overfitting
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Contributed to Streamlit deployment for real-time predictions
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Data Integration & Feature Engineering</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Combined 3 major datasets: ANWB Safe Driving (2017-2023), KNMI Weather data, and Bron Accidents
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Created temporal features accounting for date/time patterns in incidents
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Developed weather categorizations incorporating wind, precipitation, and temperature
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Engineered incident severity groupings across 4 categories: Speed, Harsh Cornering, Harsh Accelerating, Harsh Braking
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Implemented location-based features using latitude/longitude coordinates
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Team Collaboration & Legal Compliance</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Team Structure:</strong> Worked in 5-person team with Data Engineers, Data Analyst, Business Analyst roles
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Collaboration:</strong> Coordinated with data engineers to ensure model-ready data pipelines
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Timeline:</strong> 7-week development cycle with clear milestones
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>EU AI Act:</strong> Classified as Limited Risk system (advisory, not autonomous)
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>GDPR Compliance:</strong> Privacy-preserving data handling throughout pipeline
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Documentation:</strong> Complete risk assessment and legal reasoning
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">XGBoost</span>
+                <span class="tech-badge">scikit-learn</span>
+                <span class="tech-badge">pandas</span>
+                <span class="tech-badge">Streamlit</span>
+                <span class="tech-badge">SQL</span>
+                <span class="tech-badge">GridSearchCV</span>
+                <span class="tech-badge">Feature Engineering</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Results & Impact</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 16px;">Production-ready application for real-world deployment</h3>
+            <p style="font-size: 16px; color: #666; margin-bottom: 40px;">Successfully developed and deployed machine learning system providing street-level risk predictions for safer driving decisions.</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">XGBoost</div>
+                    <h4>Optimal Model Selection</h4>
+                    <p>Selected XGBoost Classifier for computational efficiency and gradient boosting capabilities, outperforming alternative approaches through systematic evaluation.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">High/Low</div>
+                    <h4>Risk Classification</h4>
+                    <p>Binary classification system providing clear, actionable predictions for drivers: High-Risk vs. Low-Risk street segments.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">Real-Time</div>
+                    <h4>Weather Integration</h4>
+                    <p>Weather-aware predictions incorporating current wind, precipitation, and temperature conditions for dynamic risk assessment.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">7 Weeks</div>
+                    <h4>Rapid Development</h4>
+                    <p>Complete ML pipeline from concept to production deployment achieved within 7-week sprint with 5-person team.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 20px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Business & Social Impact</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>For Drivers:</strong> Increased awareness, safer route planning, reduced accident risk
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>For ANWB:</strong> Lower insurance costs, mission fulfillment, competitive advantage
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>For Municipality:</strong> Data-driven infrastructure improvement insights
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Scalability:</strong> Framework applicable to other cities and regions
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Skills Demonstrated</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 40px;">Machine learning and team collaboration expertise</h3>
+            
+            <div class="skills-list">
+                <div class="skill-category">
+                    <h4>Machine Learning</h4>
+                    <ul>
+                        <li>XGBoost Model Development</li>
+                        <li>Hyperparameter Optimization (GridSearchCV)</li>
+                        <li>Model Evaluation (RMSE, Recall, MAE)</li>
+                        <li>Classification Systems</li>
+                        <li>Overfitting Prevention Strategies</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Data Engineering</h4>
+                    <ul>
+                        <li>Multi-Dataset Integration</li>
+                        <li>Feature Engineering & Selection</li>
+                        <li>Temporal Feature Creation</li>
+                        <li>Weather Data Processing</li>
+                        <li>SQL Data Manipulation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Technical Skills</h4>
+                    <ul>
+                        <li>Python (pandas, scikit-learn)</li>
+                        <li>Streamlit Application Development</li>
+                        <li>Model Deployment</li>
+                        <li>Production ML Systems</li>
+                        <li>Version Control & Documentation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Professional Skills</h4>
+                    <ul>
+                        <li>Team Collaboration (5-person team)</li>
+                        <li>Client Communication (ANWB)</li>
+                        <li>EU AI Act & GDPR Compliance</li>
+                        <li>Project Management (7-week sprint)</li>
+                        <li>Cross-functional Coordination</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <h3>Explore the Code & Documentation</h3>
+            <div class="cta-buttons">
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/ANWB" target="_blank" class="btn btn-primary" onmouseenter="document.body.classList.add('github-hover')" onmouseleave="document.body.classList.remove('github-hover')">View on GitHub</a>
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/ANWB/Certificates" target="_blank" class="btn btn-secondary" onmouseenter="document.body.classList.add('certificate-hover')" onmouseleave="document.body.classList.remove('certificate-hover')">Course Certificates</a>
+                <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

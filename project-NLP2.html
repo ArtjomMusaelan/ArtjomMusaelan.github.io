@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection MLOps Platform Phase 2 - Artjom Musaelans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        body.github-hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .section-title,
+        body.github-hover .metric-item,
+        body.github-hover .nav a,
+        body.github-hover .skill-category li {
+            color: #999;
+        }
+        
+        body.github-hover .nav {
+            border-bottom-color: #333;
+        }
+        
+        body.github-hover .hero,
+        body.github-hover .full-section,
+        body.github-hover .cta-section {
+            border-top-color: #333;
+        }
+        
+        body.github-hover .metrics-banner {
+            border-top-color: #333;
+            border-bottom-color: #333;
+        }
+        
+        body.github-hover .tech-badge {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+        
+        body.github-hover .result-card {
+            background: #2d2d2d;
+        }
+        
+        body.github-hover .result-card p {
+            color: #999;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .nav {
+            padding: 40px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .nav a {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: #1a1a1a;
+        }
+        
+        .hero {
+            padding: 80px 0 60px;
+        }
+        
+        .project-label {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .metrics-banner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 32px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .metric-item {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 80px 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        
+        .section-content h3 {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+        
+        .section-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .section-content ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .section-content li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        .section-content li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+        
+        .full-section {
+            padding: 80px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .tech-badge {
+            padding: 8px 20px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .result-card {
+            padding: 32px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .result-card h4 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .result-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .result-number {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+        
+        .skill-category h4 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            font-size: 15px;
+            color: #666;
+            padding-left: 0;
+            margin-bottom: 8px;
+        }
+        
+        .skill-category li:before {
+            content: none;
+        }
+        
+        .highlight-box {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 4px;
+            margin-top: 40px;
+        }
+        
+        .highlight-box h4 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section {
+            padding: 100px 0;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-size: 32px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2d2d2d;
+            color: #ffffff;
+            border-color: #2d2d2d;
+        }
+        
+        body.github-hover .btn-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-primary:hover {
+            background: #f0f0f0;
+            border-color: #f0f0f0;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary:hover {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 0;
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .results-grid,
+            .skills-list {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .metrics-banner {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="project-label">Project 08</div>
+            <h1>Emotion Detection MLOps Platform (Content Intelligence Agency - Phase 2)</h1>
+            <div class="metrics-banner">
+                <span class="metric-item">MLOps Engineer</span>
+                <span class="metric-item">Team of 5</span>
+                <span class="metric-item">44.7 RPS</span>
+                <span class="metric-item">99.9% Uptime</span>
+                <span class="metric-item">Azure ML</span>
+                <span class="metric-item">FastAPI</span>
+                <span class="metric-item">Streamlit</span>
+                <span class="metric-item">CI/CD</span>
+                <span class="metric-item">Production Deployment</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="two-column">
+        <div style="max-width: 1200px; margin: 0 auto; display: contents;">
+            <div class="section-content">
+                <div class="section-title">Overview</div>
+                <h3>Enterprise MLOps platform for production emotion analysis</h3>
+                <p>Led deployment and served as Team Lead for transforming Phase 1 research prototypes into production-ready enterprise MLOps platform serving Content Intelligence Agency.</p>
+                <p>Developed and deployed scalable cloud infrastructure using Azure ML with Kubernetes endpoints, Docker containerization, and FastAPI backend achieving 44.7 RPS sustained throughput with 117ms average response time and 99.9% uptime across 1,978 load test requests.</p>
+            </div>
+            
+            <div class="section-content">
+                <div class="section-title">The Challenge</div>
+                <h3>Research to production: scaling ML systems</h3>
+                <p>Content Intelligence Agency required production deployment of Phase 1 emotion detection models to analyze media content at scale. The system needed to handle real-time workloads while maintaining high availability.</p>
+                <p>The challenge was implementing complete MLOps infrastructure including automated data pipelines, CI/CD workflows, zero-downtime deployment strategies, multi-interface access, and continuous improvement loops—all while leading a 5-person team through an 8-week Agile sprint.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">My Leadership & Technical Contributions</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 32px;">Team lead with primary responsibility for deployment architecture</h3>
+            
+            <div class="two-column" style="padding: 0; gap: 60px;">
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Leadership & Architecture Design</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Led 5-person Agile team through 8-week sprint with clear milestone delivery
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Designed complete MLOps architecture on Azure ML platform with Kubernetes orchestration
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Primary responsibility for production deployment strategy and infrastructure
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Coordinated cross-functional work across infrastructure, backend, frontend, and testing
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Production Deployment Infrastructure</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Deployed Azure ML Kubernetes endpoints on adsai-lambda-0 and adsai-lambda-2 compute instances
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Implemented Docker containerization with multi-service orchestration via docker-compose
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Built FastAPI backend with 7 production endpoints supporting multiple use cases
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Developed 4-tab Streamlit web interface for real-time predictions and bulk analysis
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Multi-Model NLP Pipeline (Production)</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Whisper:</strong> Large model for Romanian and English speech-to-text transcription
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>LLaMA 3.3:</strong> Spelling correction with 200 parallel workers for high throughput
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>OPUS-MT:</strong> Romanian-English translation for multi-language support
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>CamemBERT:</strong> Emotion classification across 7 core and 19 fine-grained emotions
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>TextBlob:</strong> Sentiment intensity analysis for additional context
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Complete Pipeline:</strong> Audio to transcription to translation to emotion predictions
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>MLOps Level 4 Maturity - Full Automation</h4>
+                <p style="font-size: 16px; color: #666; margin-bottom: 20px;">Achieved enterprise-level MLOps practices with complete automation across the entire ML lifecycle.</p>
+                <div class="two-column" style="padding: 0; gap: 40px; margin-top: 20px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                Automated data preprocessing with Airflow DAG running weekly
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                CI/CD pipeline with GitHub Actions for testing and deployment
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                Blue-green deployment strategy for zero-downtime updates
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                Automated model training on Azure ML lambda compute
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                Model registry with version control and metrics logging
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                User feedback loop feeding continuous improvement
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">Azure ML</span>
+                <span class="tech-badge">Kubernetes</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Streamlit</span>
+                <span class="tech-badge">Airflow</span>
+                <span class="tech-badge">GitHub Actions</span>
+                <span class="tech-badge">PyTorch</span>
+                <span class="tech-badge">Transformers</span>
+                <span class="tech-badge">Blue-Green Deployment</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Production Performance & Impact</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 16px;">Enterprise-grade performance with exceptional reliability</h3>
+            <p style="font-size: 16px; color: #666; margin-bottom: 40px;">Comprehensive load testing and performance optimization demonstrating production-ready scalability and reliability.</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">44.7 RPS</div>
+                    <h4>Sustained Throughput</h4>
+                    <p>Achieved 44.7 requests per second sustained throughput across 1,978 requests during Locust load testing, demonstrating high-performance scalability.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">99.9%</div>
+                    <h4>System Uptime</h4>
+                    <p>Only 1 failure across 1,978 requests, achieving 99.9% uptime with 117ms average response time and 270ms 99th percentile latency.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">7</div>
+                    <h4>Production Endpoints</h4>
+                    <p>FastAPI backend with comprehensive endpoints: text prediction, CSV batch processing, YouTube transcription, audio upload, feedback collection, and health monitoring.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">200</div>
+                    <h4>Parallel Workers</h4>
+                    <p>LLaMA 3.3 spelling correction with 200 concurrent workers optimized for high throughput and low latency at scale.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 20px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Deployment Strategy & Cost Optimization</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Blue-Green Strategy:</strong> Zero-downtime updates with 80/20 traffic shifting for validation
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Safe Rollback:</strong> Complete cutover capability with instant rollback if issues detected
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Cost Efficiency:</strong> Justified over shadow/canary deployments avoiding duplicate infrastructure
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Multi-Interface Access:</strong> REST API for developers, Streamlit UI for business analysts
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Continuous Improvement:</strong> User feedback collection feeding Azure ML for model retraining
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Production Ready:</strong> Transformed Phase 1 research into scalable enterprise system
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Skills Demonstrated</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 40px;">Enterprise MLOps and team leadership expertise</h3>
+            
+            <div class="skills-list">
+                <div class="skill-category">
+                    <h4>MLOps & DevOps</h4>
+                    <ul>
+                        <li>Azure ML Platform Architecture</li>
+                        <li>Kubernetes Orchestration</li>
+                        <li>Docker Containerization</li>
+                        <li>CI/CD Pipeline (GitHub Actions)</li>
+                        <li>Blue-Green Deployment Strategy</li>
+                        <li>Airflow Workflow Automation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Backend & Infrastructure</h4>
+                    <ul>
+                        <li>FastAPI Production Development</li>
+                        <li>REST API Design (7 endpoints)</li>
+                        <li>Load Balancing & Scaling</li>
+                        <li>Performance Optimization</li>
+                        <li>System Architecture Design</li>
+                        <li>Cloud Infrastructure (Azure)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Leadership & Project Management</h4>
+                    <ul>
+                        <li>Team Lead (5-person Agile team)</li>
+                        <li>Deployment Lead & Primary Ownership</li>
+                        <li>Sprint Planning & Execution</li>
+                        <li>Cross-functional Coordination</li>
+                        <li>Client Stakeholder Management</li>
+                        <li>Technical Decision Making</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Production Systems</h4>
+                    <ul>
+                        <li>Enterprise MLOps (Level 4 Maturity)</li>
+                        <li>High-Performance Systems (44.7 RPS)</li>
+                        <li>Reliability Engineering (99.9% uptime)</li>
+                        <li>Multi-Interface Development</li>
+                        <li>Continuous Integration & Deployment</li>
+                        <li>Model Versioning & Registry</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <h3>Explore the Production Code & Architecture</h3>
+            <div class="cta-buttons">
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/NLP_ContentIntelligenceAgency_Phase2" target="_blank" class="btn btn-primary" onmouseenter="document.body.classList.add('github-hover')" onmouseleave="document.body.classList.remove('github-hover')">View on GitHub</a>
+                <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

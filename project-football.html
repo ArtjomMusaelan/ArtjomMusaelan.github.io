@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Player Goal Prediction - Artjom Musaelans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        body.github-hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.certificate-hover {
+            background: #4a4a4a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .section-title,
+        body.github-hover .metric-item,
+        body.github-hover .nav a,
+        body.github-hover .skill-category li {
+            color: #999;
+        }
+        
+        body.certificate-hover .section-title,
+        body.certificate-hover .metric-item,
+        body.certificate-hover .nav a,
+        body.certificate-hover .skill-category li {
+            color: #bbb;
+        }
+        
+        body.github-hover .nav {
+            border-bottom-color: #333;
+        }
+        
+        body.certificate-hover .nav {
+            border-bottom-color: #666;
+        }
+        
+        body.github-hover .hero,
+        body.github-hover .full-section,
+        body.github-hover .cta-section {
+            border-top-color: #333;
+        }
+        
+        body.certificate-hover .hero,
+        body.certificate-hover .full-section,
+        body.certificate-hover .cta-section {
+            border-top-color: #666;
+        }
+        
+        body.github-hover .metrics-banner {
+            border-top-color: #333;
+            border-bottom-color: #333;
+        }
+        
+        body.certificate-hover .metrics-banner {
+            border-top-color: #666;
+            border-bottom-color: #666;
+        }
+        
+        body.github-hover .tech-badge {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+        
+        body.certificate-hover .tech-badge {
+            background: #5a5a5a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .result-card {
+            background: #2d2d2d;
+        }
+        
+        body.certificate-hover .result-card {
+            background: #5a5a5a;
+        }
+        
+        body.github-hover .result-card p {
+            color: #999;
+        }
+        
+        body.certificate-hover .result-card p {
+            color: #bbb;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .nav {
+            padding: 40px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .nav a {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: #1a1a1a;
+        }
+        
+        .hero {
+            padding: 80px 0 60px;
+        }
+        
+        .project-label {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .metrics-banner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 32px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .metric-item {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 80px 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        
+        .section-content h3 {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+        
+        .section-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .section-content ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .section-content li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        .section-content li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+        
+        .full-section {
+            padding: 80px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .tech-badge {
+            padding: 8px 20px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .result-card {
+            padding: 32px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .result-card h4 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .result-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .result-number {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+        
+        .skill-category h4 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            font-size: 15px;
+            color: #666;
+            padding-left: 0;
+            margin-bottom: 8px;
+        }
+        
+        .skill-category li:before {
+            content: none;
+        }
+        
+        .cta-section {
+            padding: 100px 0;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-size: 32px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2d2d2d;
+            color: #ffffff;
+            border-color: #2d2d2d;
+        }
+        
+        body.github-hover .btn-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-primary:hover {
+            background: #f0f0f0;
+            border-color: #f0f0f0;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary:hover {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        body.certificate-hover .btn-primary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.certificate-hover .btn-secondary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.certificate-hover .btn-secondary:hover {
+            background: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 0;
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .results-grid,
+            .skills-list {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .metrics-banner {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="project-label">Project 02</div>
+            <h1>Football Player Goal Prediction (NAC Breda)</h1>
+            <div class="metrics-banner">
+                <span class="metric-item">Data Scientist</span>
+                <span class="metric-item">16,535+ Players</span>
+                <span class="metric-item">R²=0.9903</span>
+                <span class="metric-item">Machine Learning</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="two-column">
+        <div style="max-width: 1200px; margin: 0 auto; display: contents;">
+            <div class="section-content">
+                <div class="section-title">Overview</div>
+                <h3>Predicting player goal-scoring potential for strategic recruitment</h3>
+                <p>Developed a comprehensive machine learning system for NAC Breda to predict player goal-scoring potential and support strategic recruitment decisions. The project processed 16,535 player records with 116 performance metrics.</p>
+                <p>Implemented rigorous data cleaning protocols that reduced the dataset to 8,923 quality records, ensuring reliable model training and accurate predictions.</p>
+            </div>
+            
+            <div class="section-content">
+                <div class="section-title">The Challenge</div>
+                <h3>Building reliable predictions from complex player data</h3>
+                <p>Football clubs need data-driven insights to evaluate player potential and make informed recruitment decisions, but player performance data is complex and multidimensional.</p>
+                <p>The challenge was to process over 16,000 player records with 116 different performance features, clean the data effectively, and build a model that could accurately predict goal-scoring performance while remaining interpretable for club decision-makers.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Technical Approach</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 32px;">End-to-end machine learning pipeline development</h3>
+            
+            <div class="two-column" style="padding: 0; gap: 60px;">
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Data Processing & Analysis</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Processed 16,535 player records with 116 performance metrics from comprehensive football database
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Implemented rigorous data cleaning reducing dataset to 8,923 quality records
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Created 15+ statistical visualizations revealing key insights into player performance patterns
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Performed exploratory data analysis identifying xG (Expected Goals) as strongest predictor
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Model Development & Optimization</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Analyzed and compared 6+ machine learning algorithms including Random Forest, SVM, and Gradient Boosting
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Selected Linear Regression achieving 99.03% accuracy (MSE: 0.0691)
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Implemented gradient descent optimization algorithm from scratch for mathematical understanding
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Applied Recursive Feature Elimination (RFE) for optimal feature selection
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Responsible AI Implementation</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>GDPR Compliance:</strong> Implemented complete ethical AI framework ensuring player data privacy
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>API Integration:</strong> Utilized RESTful API for secure data retrieval
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Mathematical Foundation:</strong> Applied linear algebra and calculus for custom implementations
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Transparency:</strong> Created interpretable model suitable for business decision-making
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">scikit-learn</span>
+                <span class="tech-badge">pandas</span>
+                <span class="tech-badge">NumPy</span>
+                <span class="tech-badge">matplotlib</span>
+                <span class="tech-badge">Jupyter Notebooks</span>
+                <span class="tech-badge">Linear Regression</span>
+                <span class="tech-badge">Random Forest</span>
+                <span class="tech-badge">SVM</span>
+                <span class="tech-badge">Gradient Boosting</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Results & Impact</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 16px;">Exceptional prediction accuracy for strategic decisions</h3>
+            <p style="font-size: 16px; color: #666; margin-bottom: 40px;">The model achieved industry-leading performance metrics, providing NAC Breda with reliable predictions for player evaluation and recruitment strategy.</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">99.03%</div>
+                    <h4>Prediction Accuracy (R²)</h4>
+                    <p>Linear Regression model achieved exceptional R² score of 0.9903, demonstrating near-perfect prediction capability for player goal-scoring performance.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">0.0691</div>
+                    <h4>Mean Squared Error</h4>
+                    <p>Extremely low MSE indicating minimal prediction error, providing reliable insights for strategic recruitment decisions.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">6+</div>
+                    <h4>Models Compared</h4>
+                    <p>Comprehensive evaluation of multiple algorithms including Random Forest, SVM, and Gradient Boosting to identify optimal solution.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">xG</div>
+                    <h4>Key Feature Identified</h4>
+                    <p>Discovered Expected Goals (xG) as the strongest predictor of player performance through systematic feature analysis.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 20px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Business Impact</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Recruitment Strategy:</strong> Enables data-driven player evaluation and scouting decisions
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Risk Reduction:</strong> Minimizes uncertainty in player acquisition investments
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Competitive Advantage:</strong> Provides quantitative insights for strategic planning
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Scalable Solution:</strong> Framework applicable to broader player analytics needs
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Skills Demonstrated</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 40px;">Comprehensive data science and machine learning capabilities</h3>
+            
+            <div class="skills-list">
+                <div class="skill-category">
+                    <h4>Machine Learning</h4>
+                    <ul>
+                        <li>Algorithm Comparison & Selection</li>
+                        <li>Model Training & Optimization</li>
+                        <li>Hyperparameter Tuning</li>
+                        <li>Feature Engineering & Selection (RFE)</li>
+                        <li>Custom Gradient Descent Implementation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Data Science</h4>
+                    <ul>
+                        <li>Exploratory Data Analysis</li>
+                        <li>Data Cleaning & Preprocessing</li>
+                        <li>Statistical Visualization (15+ charts)</li>
+                        <li>Pattern Recognition & Insights</li>
+                        <li>End-to-End Pipeline Development</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Technical Skills</h4>
+                    <ul>
+                        <li>Python (pandas, scikit-learn, NumPy)</li>
+                        <li>Data Visualization (matplotlib)</li>
+                        <li>Jupyter Notebooks</li>
+                        <li>RESTful API Integration</li>
+                        <li>Mathematical Optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Professional Skills</h4>
+                    <ul>
+                        <li>Client-Focused Development</li>
+                        <li>Ethical AI & GDPR Compliance</li>
+                        <li>End-to-End Project Ownership</li>
+                        <li>Business Requirements Analysis</li>
+                        <li>Technical Documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <h3>Explore the Code & Documentation</h3>
+            <div class="cta-buttons">
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/Goal_Prediction_NAC" target="_blank" class="btn btn-primary" onmouseenter="document.body.classList.add('github-hover')" onmouseleave="document.body.classList.remove('github-hover')">View on GitHub</a>
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/Goal_Prediction_NAC/Certificates" target="_blank" class="btn btn-secondary" onmouseenter="document.body.classList.add('certificate-hover')" onmouseleave="document.body.classList.remove('certificate-hover')">Course Certificates</a>
+                <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

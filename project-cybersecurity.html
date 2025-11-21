@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Policy Research for Small Hotels - Artjom Musaelans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        body.github-hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .section-title,
+        body.github-hover .metric-item,
+        body.github-hover .nav a,
+        body.github-hover .skill-category li {
+            color: #999;
+        }
+        
+        body.github-hover .nav {
+            border-bottom-color: #333;
+        }
+        
+        body.github-hover .hero,
+        body.github-hover .full-section,
+        body.github-hover .cta-section {
+            border-top-color: #333;
+        }
+        
+        body.github-hover .metrics-banner {
+            border-top-color: #333;
+            border-bottom-color: #333;
+        }
+        
+        body.github-hover .tech-badge {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+        
+        body.github-hover .result-card {
+            background: #2d2d2d;
+        }
+        
+        body.github-hover .result-card p {
+            color: #999;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .nav {
+            padding: 40px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .nav a {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: #1a1a1a;
+        }
+        
+        .hero {
+            padding: 80px 0 60px;
+        }
+        
+        .project-label {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .metrics-banner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 32px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .metric-item {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 80px 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        
+        .section-content h3 {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+        
+        .section-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .section-content ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .section-content li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        .section-content li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+        
+        .full-section {
+            padding: 80px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .tech-badge {
+            padding: 8px 20px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .result-card {
+            padding: 32px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .result-card h4 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .result-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .result-number {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+        
+        .skill-category h4 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            font-size: 15px;
+            color: #666;
+            padding-left: 0;
+            margin-bottom: 8px;
+        }
+        
+        .skill-category li:before {
+            content: none;
+        }
+        
+        .cta-section {
+            padding: 100px 0;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-size: 32px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2d2d2d;
+            color: #ffffff;
+            border-color: #2d2d2d;
+        }
+        
+        body.github-hover .btn-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-primary:hover {
+            background: #f0f0f0;
+            border-color: #f0f0f0;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary:hover {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 0;
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .results-grid,
+            .skills-list {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .metrics-banner {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="project-label">Project 05</div>
+            <h1>Cybersecurity Policy Research for Small Hotels</h1>
+            <div class="metrics-banner">
+                <span class="metric-item">Research Analyst</span>
+                <span class="metric-item">r=0.456 Correlation</span>
+                <span class="metric-item">GDPR Compliant</span>
+                <span class="metric-item">Team of 5</span>
+                <span class="metric-item">Mixed Methods</span>
+                <span class="metric-item">Policy Recommendations</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="two-column">
+        <div style="max-width: 1200px; margin: 0 auto; display: contents;">
+            <div class="section-content">
+                <div class="section-title">Overview</div>
+                <h3>Evidence-based cybersecurity policy for hospitality SMEs</h3>
+                <p>Led a 5-person research team conducting comprehensive academic investigation of employee cybersecurity awareness impact on security posture of small hotels, addressing critical gap between knowledge and practice in resource-constrained hospitality enterprises.</p>
+                <p>As Team Lead, coordinated mixed-methods research approach combining quantitative surveys and qualitative structured interviews, completed in partnership with DigiWerkplaats Breda over 8-week period (September-November 2024).</p>
+            </div>
+            
+            <div class="section-content">
+                <div class="section-title">The Challenge</div>
+                <h3>Bridging the cybersecurity knowledge-practice gap</h3>
+                <p>Small hotels face significant cybersecurity challenges due to limited resources, lack of dedicated IT staff, and gaps in employee awareness. Despite increasing cyber threats targeting hospitality industry, little empirical research existed on effective training approaches.</p>
+                <p>The challenge was identifying which factors most effectively improve cybersecurity practices while being realistic for resource-constrained organizations, requiring rigorous research methodology with full GDPR compliance and ethics board approval.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Research Methodology</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 32px;">Team leadership in mixed-methods research design</h3>
+            
+            <div class="two-column" style="padding: 0; gap: 60px;">
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Quantitative Research Component</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Designed and distributed online surveys via Qualtrics measuring age, confidence levels, training frequency, and perceived impact
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Processed data using Python with scikit-learn in Jupyter Notebooks for statistical correlation analysis
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Conducted demographic evaluation across hotel employee sample
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Applied statistical testing to identify significant relationships between variables
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Qualitative Research Component</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Conducted structured interviews (in-person and via Microsoft Teams) with hotel employees
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Recorded audio (MP3 format) under informed consent with AI-powered transcription
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Performed manual verification of transcriptions ensuring accuracy
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Applied systematic thematic coding identifying 9 major themes across 5 interview transcripts
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Ethics & Compliance Framework</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>BUas Ethics Board:</strong> Approved as Medium Risk category with full compliance review
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>GDPR Compliance:</strong> Encrypted storage, restricted access with 2FA, complete anonymization
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Data Retention:</strong> 10-year institutional policy with secure institutional systems
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Informed Consent:</strong> Voluntary participation with withdrawal rights, participant data access
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Research Integrity:</strong> Netherlands Code of Conduct (2018) and FAIR principles
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Documentation:</strong> Complete data management with codebook and privacy protocols
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">scikit-learn</span>
+                <span class="tech-badge">Jupyter Notebooks</span>
+                <span class="tech-badge">Qualtrics</span>
+                <span class="tech-badge">Microsoft Teams</span>
+                <span class="tech-badge">Statistical Analysis</span>
+                <span class="tech-badge">Thematic Coding</span>
+                <span class="tech-badge">Mixed Methods</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Research Findings & Impact</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 16px;">Evidence-based recommendations for effective training programs</h3>
+            <p style="font-size: 16px; color: #666; margin-bottom: 40px;">Key insights challenging common assumptions while providing actionable guidance for resource-constrained hospitality organizations.</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">r=0.456</div>
+                    <h4>Training Frequency Correlation</h4>
+                    <p>Moderate positive correlation between training frequency and security protocol adherence, with optimal results from quarterly or biannual interactive sessions.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">3-6 Mo.</div>
+                    <h4>Optimal Training Schedule</h4>
+                    <p>Regular training every 3-6 months balances engagement and retention without causing training fatigue, maintaining knowledge effectiveness.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">9 Themes</div>
+                    <h4>Qualitative Insights</h4>
+                    <p>Systematic thematic analysis across 5 interviews revealed 9 major themes including role-specific needs and leadership importance.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">No Age Gap</div>
+                    <h4>Universal Training Approach</h4>
+                    <p>No significant difference in cybersecurity awareness across age groups, supporting universal programs without age-based customization.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 20px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Policy Recommendations Delivered</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Regular Training Cycles:</strong> Implement 3-6 month intervals maintaining knowledge retention
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Interactive Approach:</strong> Scenario-based exercises tailored to specific roles (front desk, management)
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Security Culture:</strong> Visible leadership support with regular reminders integrated into workflows
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Universal Programs:</strong> Foundational knowledge for all employees regardless of demographics
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Third-Party Support:</strong> Consider external training providers addressing resource limitations
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Future Research:</strong> Identified 7 areas for continued investigation including longitudinal studies
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Skills Demonstrated</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 40px;">Research methodology and data analysis expertise</h3>
+            
+            <div class="skills-list">
+                <div class="skill-category">
+                    <h4>Research Methods</h4>
+                    <ul>
+                        <li>Mixed-Methods Research Design</li>
+                        <li>Quantitative Survey Development</li>
+                        <li>Qualitative Interview Techniques</li>
+                        <li>Thematic Coding & Analysis</li>
+                        <li>Academic Research Standards</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Data Analysis</h4>
+                    <ul>
+                        <li>Statistical Correlation Testing</li>
+                        <li>Python & scikit-learn</li>
+                        <li>Demographic Analysis</li>
+                        <li>Qualitative Data Processing</li>
+                        <li>Evidence Synthesis</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Ethics & Compliance</h4>
+                    <ul>
+                        <li>GDPR Compliance Implementation</li>
+                        <li>Ethics Board Approval Process</li>
+                        <li>Human Subjects Research</li>
+                        <li>Data Privacy & Security</li>
+                        <li>Research Integrity Standards</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Professional Skills</h4>
+                    <ul>
+                        <li>Team Leadership (5-person team)</li>
+                        <li>Policy Writing & Recommendations</li>
+                        <li>Client Partnership (DigiWerkplaats)</li>
+                        <li>Data Management & Documentation</li>
+                        <li>Research Communication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <h3>Explore the Research & Documentation</h3>
+            <div class="cta-buttons">
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/Policy_Research_for_SMEs" target="_blank" class="btn btn-primary" onmouseenter="document.body.classList.add('github-hover')" onmouseleave="document.body.classList.remove('github-hover')">View on GitHub</a>
+                <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

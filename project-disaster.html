@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Disaster Image Classifier - Artjom Musaelans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        body.github-hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.certificate-hover {
+            background: #4a4a4a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .section-title,
+        body.github-hover .metric-item,
+        body.github-hover .nav a,
+        body.github-hover .skill-category li {
+            color: #999;
+        }
+        
+        body.certificate-hover .section-title,
+        body.certificate-hover .metric-item,
+        body.certificate-hover .nav a,
+        body.certificate-hover .skill-category li {
+            color: #bbb;
+        }
+        
+        body.github-hover .nav {
+            border-bottom-color: #333;
+        }
+        
+        body.certificate-hover .nav {
+            border-bottom-color: #666;
+        }
+        
+        body.github-hover .hero,
+        body.github-hover .full-section,
+        body.github-hover .cta-section {
+            border-top-color: #333;
+        }
+        
+        body.certificate-hover .hero,
+        body.certificate-hover .full-section,
+        body.certificate-hover .cta-section {
+            border-top-color: #666;
+        }
+        
+        body.github-hover .metrics-banner {
+            border-top-color: #333;
+            border-bottom-color: #333;
+        }
+        
+        body.certificate-hover .metrics-banner {
+            border-top-color: #666;
+            border-bottom-color: #666;
+        }
+        
+        body.github-hover .tech-badge {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+        
+        body.certificate-hover .tech-badge {
+            background: #5a5a5a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .result-card {
+            background: #2d2d2d;
+        }
+        
+        body.certificate-hover .result-card {
+            background: #5a5a5a;
+        }
+        
+        body.github-hover .result-card p {
+            color: #999;
+        }
+        
+        body.certificate-hover .result-card p {
+            color: #bbb;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .nav {
+            padding: 40px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .nav a {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: #1a1a1a;
+        }
+        
+        .hero {
+            padding: 80px 0 60px;
+        }
+        
+        .project-label {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .metrics-banner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 32px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .metric-item {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 80px 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        
+        .section-content h3 {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+        
+        .section-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .section-content ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .section-content li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        .section-content li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+        
+        .full-section {
+            padding: 80px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .tech-badge {
+            padding: 8px 20px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .result-card {
+            padding: 32px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .result-card h4 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .result-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .result-number {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+        
+        .skill-category h4 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            font-size: 15px;
+            color: #666;
+            padding-left: 0;
+            margin-bottom: 8px;
+        }
+        
+        .skill-category li:before {
+            content: none;
+        }
+        
+        .cta-section {
+            padding: 100px 0;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-size: 32px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2d2d2d;
+            color: #ffffff;
+            border-color: #2d2d2d;
+        }
+        
+        body.github-hover .btn-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-primary:hover {
+            background: #f0f0f0;
+            border-color: #f0f0f0;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary:hover {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        body.certificate-hover .btn-primary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.certificate-hover .btn-secondary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.certificate-hover .btn-secondary:hover {
+            background: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 0;
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .results-grid,
+            .skills-list {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .metrics-banner {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="project-label">Project 03</div>
+            <h1>Natural Disaster Image Classifier</h1>
+            <div class="metrics-banner">
+                <span class="metric-item">ML Engineer</span>
+                <span class="metric-item">98.3% Validation Accuracy</span>
+                <span class="metric-item">CNN & XAI</span>
+                <span class="metric-item">Deep Learning</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="two-column">
+        <div style="max-width: 1200px; margin: 0 auto; display: contents;">
+            <div class="section-content">
+                <div class="section-title">Overview</div>
+                <h3>AI-powered early warning system for disaster detection</h3>
+                <p>Designed and developed an AI-powered early warning system to automatically classify natural disasters from images, supporting emergency response agencies in rapid disaster detection and resource mobilization.</p>
+                <p>Built end-to-end deep learning application collecting and processing ~300 curated images across floods and wildfires, implementing 4 CNN architecture iterations with systematic evaluation and explainable AI techniques.</p>
+            </div>
+            
+            <div class="section-content">
+                <div class="section-title">The Challenge</div>
+                <h3>Creating transparent and reliable disaster detection</h3>
+                <p>Emergency response agencies needed automated disaster detection from visual data to enable faster response times and better resource allocation, but existing solutions lacked transparency and reliability.</p>
+                <p>The challenge required building a system that could accurately classify disasters while being interpretable and fair, addressing geographic underrepresentation and ensuring model decisions could be understood and trusted by emergency responders.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Technical Approach</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 32px;">Complete deep learning pipeline with explainable AI</h3>
+            
+            <div class="two-column" style="padding: 0; gap: 60px;">
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Data Collection & Preprocessing</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Automated data collection using Selenium web scraper from DuckDuckGo, gathering ~300 curated images
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Implemented progressive data augmentation (rotation 20°-45°, shifting, shearing, zoom, brightness, flipping)
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Processed images at multiple resolutions (64×64 to 224×224) for architecture comparison
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Established multiple baselines including Random (50%), Human-level (98.3%), MLP (81.25%)
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Model Development & Optimization</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Implemented 4 CNN iterations exploring complexity trade-offs and regularization techniques
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Best model: Simple 2-layer CNN achieving 98.3% validation accuracy and 87.5% test accuracy
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Explored dropout regularization, batch normalization, and VGG-style architectures
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Built custom MLP from scratch using NumPy for fundamental understanding
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Explainable AI & Responsible Development</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>LIME & KernelSHAP:</strong> Implemented multiple explainability techniques with parameter tuning (200-25000 samples)
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Segmentation Methods:</strong> Explored Quickshift, Felzenszwalb, SLIC, and Watershed techniques
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Fairness Analysis:</strong> Addressed geographic underrepresentation and image source diversity
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Human-Centered Design:</strong> Conducted think-aloud studies and A/B testing with wireframes in Figma
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Stakeholder Analysis:</strong> Comprehensive analysis with emergency agencies as primary stakeholder
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>DAPS Framework:</strong> Transparent decision-making with documented bias mitigation
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">TensorFlow</span>
+                <span class="tech-badge">Keras</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Selenium</span>
+                <span class="tech-badge">scikit-learn</span>
+                <span class="tech-badge">NumPy</span>
+                <span class="tech-badge">Xplique</span>
+                <span class="tech-badge">LIME</span>
+                <span class="tech-badge">SHAP</span>
+                <span class="tech-badge">Figma</span>
+                <span class="tech-badge">CNN</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Results & Impact</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 16px;">High-performance classification with model transparency</h3>
+            <p style="font-size: 16px; color: #666; margin-bottom: 40px;">Achieved exceptional accuracy while maintaining explainability and fairness, demonstrating potential for real-world emergency response deployment.</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">98.3%</div>
+                    <h4>Validation Accuracy</h4>
+                    <p>Achieved human-level performance on validation set, matching expert baseline and demonstrating strong generalization capability.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">87.5%</div>
+                    <h4>Test Accuracy</h4>
+                    <p>Maintained high performance on unseen test data, validating model robustness and real-world applicability for emergency systems.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">4</div>
+                    <h4>CNN Iterations</h4>
+                    <p>Systematic exploration of architectures from simple 2-layer to VGG-style designs, optimizing complexity-performance trade-offs.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">XAI</div>
+                    <h4>Model Transparency</h4>
+                    <p>Implemented LIME and KernelSHAP with multiple segmentation methods ensuring decisions are interpretable and trustworthy.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 20px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Real-World Impact</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Emergency Response:</strong> Enables faster disaster detection and resource mobilization for agencies
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Life-Saving Potential:</strong> Early warning capabilities supporting evacuation and emergency planning
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Resource Optimization:</strong> Intelligent allocation based on disaster type classification
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Ethical AI:</strong> Comprehensive fairness analysis and bias mitigation for equitable deployment
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Skills Demonstrated</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 40px;">Deep learning and responsible AI expertise</h3>
+            
+            <div class="skills-list">
+                <div class="skill-category">
+                    <h4>Deep Learning & Computer Vision</h4>
+                    <ul>
+                        <li>CNN Architecture Design & Optimization</li>
+                        <li>Transfer Learning Concepts</li>
+                        <li>Data Augmentation Strategies</li>
+                        <li>Model Evaluation & Comparison</li>
+                        <li>Custom Neural Network Implementation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Explainable AI (XAI)</h4>
+                    <ul>
+                        <li>LIME Implementation & Tuning</li>
+                        <li>KernelSHAP Analysis</li>
+                        <li>Image Segmentation Techniques</li>
+                        <li>Model Interpretability</li>
+                        <li>Transparency & Trust Building</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Technical Skills</h4>
+                    <ul>
+                        <li>TensorFlow & Keras</li>
+                        <li>Automated Web Scraping (Selenium)</li>
+                        <li>Python & NumPy</li>
+                        <li>Model Evaluation Metrics</li>
+                        <li>Human-Centered Design (Figma)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Responsible AI</h4>
+                    <ul>
+                        <li>Fairness Analysis & Bias Mitigation</li>
+                        <li>Stakeholder Analysis</li>
+                        <li>Ethical Data Collection</li>
+                        <li>DAPS Framework Application</li>
+                        <li>User Research & A/B Testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <h3>Explore the Code & Documentation</h3>
+            <div class="cta-buttons">
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/Classifer_of_natural_disasters" target="_blank" class="btn btn-primary" onmouseenter="document.body.classList.add('github-hover')" onmouseleave="document.body.classList.remove('github-hover')">View on GitHub</a>
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/Classifer_of_natural_disasters/Certificates" target="_blank" class="btn btn-secondary" onmouseenter="document.body.classList.add('certificate-hover')" onmouseleave="document.body.classList.remove('certificate-hover')">Course Certificates</a>
+                <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
