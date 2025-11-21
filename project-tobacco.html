@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG3 Tobacco Mortality Analysis - Artjom Musaelans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        body.github-hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .section-title,
+        body.github-hover .metric-item,
+        body.github-hover .nav a,
+        body.github-hover .skill-category li {
+            color: #999;
+        }
+        
+        body.github-hover .nav {
+            border-bottom-color: #333;
+        }
+        
+        body.github-hover .hero,
+        body.github-hover .full-section,
+        body.github-hover .cta-section {
+            border-top-color: #333;
+        }
+        
+        body.github-hover .metrics-banner {
+            border-top-color: #333;
+            border-bottom-color: #333;
+        }
+        
+        body.github-hover .tech-badge {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+        
+        body.github-hover .result-card {
+            background: #2d2d2d;
+        }
+        
+        body.github-hover .result-card p {
+            color: #999;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        /* Navigation */
+        .nav {
+            padding: 40px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .nav a {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: #1a1a1a;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+        }
+        
+        .project-label {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .metrics-banner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 32px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .metric-item {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 80px 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        
+        .section-content h3 {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+        
+        .section-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .section-content ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .section-content li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        .section-content li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+        
+        /* Full Width Sections */
+        .full-section {
+            padding: 80px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .tech-badge {
+            padding: 8px 20px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .result-card {
+            padding: 32px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .result-card h4 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .result-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .result-number {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+        
+        .skill-category h4 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            font-size: 15px;
+            color: #666;
+            padding-left: 0;
+            margin-bottom: 8px;
+        }
+        
+        .skill-category li:before {
+            content: none;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-size: 32px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2d2d2d;
+            color: #ffffff;
+            border-color: #2d2d2d;
+        }
+        
+        body.github-hover .btn-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-primary:hover {
+            background: #f0f0f0;
+            border-color: #f0f0f0;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.github-hover .btn-secondary:hover {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 0;
+            }
+            
+            .results-grid,
+            .skills-list {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .metrics-banner {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="project-label">Project 01</div>
+            <h1>SDG3 Tobacco Mortality Analysis</h1>
+            <div class="metrics-banner">
+                <span class="metric-item">Data Analyst & Designer</span>
+                <span class="metric-item">1990-2019 Dataset</span>
+                <span class="metric-item">Strong Correlations r=0.84-0.99</span>
+                <span class="metric-item">Power BI Dashboard</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Overview Section -->
+    <section class="two-column">
+        <div style="max-width: 1200px; margin: 0 auto; display: contents;">
+            <div class="section-content">
+                <div class="section-title">Overview</div>
+                <h3>Supporting UN health policy decisions through data visualization</h3>
+                <p>Developed comprehensive Power BI dashboard analyzing global tobacco-related mortality from 1990-2019 to support UN Sustainable Development Goal 3 (Good Health & Well-Being).</p>
+                <p>Processed and visualized public health data from Our World in Data covering mortality trends across countries and age groups (15-49, 50-69, 70+ years).</p>
+            </div>
+            
+            <div class="section-content">
+                <div class="section-title">The Challenge</div>
+                <h3>Making complex 30-year dataset accessible</h3>
+                <p>Public health organizations needed clear visualization of tobacco impact across global populations to inform policy decisions and awareness campaigns.</p>
+                <p>The challenge was transforming complex 30-year multi-country dataset into actionable insights for policymakers and public health professionals while quantifying the relationship between consumption and mortality across different age groups, countries, and time periods.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Technical Approach -->
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Technical Approach</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 32px;">End-to-end dashboard development process</h3>
+            
+            <div class="two-column" style="padding: 0; gap: 60px;">
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Data Processing</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Processed Our World in Data smoking dataset covering global mortality by country and year (1990-2019)
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Cleaned and transformed data using Power Query to standardize country codes and handle missing values
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Created proper time series structure with mortality segmented by age categories
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Developed DAX measures for dynamic KPI calculations including percentage change and total mortality aggregations
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 16px; color: #1a1a1a;">Dashboard Design</h4>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Created 4-tab interactive dashboard system with mortality trends, country analysis, and global comparisons
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Used stacked area charts for 30-year trends across three age categories
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Implemented geographic maps displaying death rates by country with 1990 vs 2019 comparisons
+                        </li>
+                        <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                            <span style="position: absolute; left: 0; color: #999;">—</span>
+                            Added scatter plots with regression lines and correlation coefficient displays for age-specific analysis
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">Power BI Desktop</span>
+                <span class="tech-badge">Power Query</span>
+                <span class="tech-badge">DAX</span>
+                <span class="tech-badge">Data Visualization</span>
+                <span class="tech-badge">Statistical Analysis</span>
+                <span class="tech-badge">Our World in Data</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Results & Impact -->
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Results & Impact</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 16px;">Strong evidence supporting public health interventions</h3>
+            <p style="font-size: 16px; color: #666; margin-bottom: 40px;">Research findings revealed clear patterns supporting tobacco reduction policies across all demographics and regions.</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">0.99</div>
+                    <h4>Correlation for Ages 15-49</h4>
+                    <p>Nearly perfect correlation between tobacco use and mortality in younger age groups, providing strong evidence for early intervention programs.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">0.99</div>
+                    <h4>Correlation for Ages 50-69</h4>
+                    <p>Consistent high correlation in middle-age populations, supporting targeted prevention campaigns for this demographic.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">0.98</div>
+                    <h4>Correlation for Ages 70+</h4>
+                    <p>Strong correlation in older populations showing highest absolute mortality numbers despite consistent patterns across age groups.</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">0.84</div>
+                    <h4>Overall Correlation</h4>
+                    <p>Clear long-term global pattern across all demographics supporting public health interventions targeting tobacco reduction.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h4 style="font-size: 20px; font-weight: 400; margin-bottom: 24px; color: #1a1a1a;">Business Applications</h4>
+                <div class="two-column" style="padding: 0; gap: 40px;">
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Public Health Analysis:</strong> Enables health organizations to identify high-burden countries and populations
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Evidence-Based Decisions:</strong> Supports policy interventions with quantitative evidence
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Targeted Campaigns:</strong> Identifies high-risk demographics for focused prevention efforts
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 12px;">
+                                <span style="position: absolute; left: 0; color: #999;">—</span>
+                                <strong>Progress Monitoring:</strong> Tracks mortality trends over time toward SDG 3 health goals
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Demonstrated -->
+    <section class="full-section">
+        <div class="container">
+            <div class="section-title">Skills Demonstrated</div>
+            <h3 style="font-size: 32px; font-weight: 300; margin-bottom: 40px;">Technical and analytical capabilities developed</h3>
+            
+            <div class="skills-list">
+                <div class="skill-category">
+                    <h4>Technical Skills</h4>
+                    <ul>
+                        <li>Business Intelligence & Data Visualization</li>
+                        <li>Power BI Dashboard Development</li>
+                        <li>ETL Processes with Power Query</li>
+                        <li>DAX for Calculated Measures & KPIs</li>
+                        <li>Interactive Dashboard Design</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Analytical Skills</h4>
+                    <ul>
+                        <li>Statistical Correlation Analysis</li>
+                        <li>Public Health Data Analysis</li>
+                        <li>Trend Analysis Across Time Periods</li>
+                        <li>Age-Group Segmentation</li>
+                        <li>Data-Driven Storytelling</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Domain Knowledge</h4>
+                    <ul>
+                        <li>UN Sustainable Development Goals</li>
+                        <li>Public Health Policy Context</li>
+                        <li>Global Health Data Sources</li>
+                        <li>Social Impact Focus</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Professional Skills</h4>
+                    <ul>
+                        <li>End-to-End Project Ownership</li>
+                        <li>Requirement Analysis</li>
+                        <li>Data Quality Management</li>
+                        <li>Documentation & Presentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h3>Explore the Code & Documentation</h3>
+            <div class="cta-buttons">
+                <a href="https://github.com/yourprofile/tobacco-mortality-analysis" target="_blank" class="btn btn-primary" onmouseenter="document.body.classList.add('github-hover')" onmouseleave="document.body.classList.remove('github-hover')">View on GitHub</a>
+                <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
