@@ -24,6 +24,11 @@
             color: #ffffff;
         }
         
+        body.certificate-hover {
+            background: #4a4a4a;
+            color: #ffffff;
+        }
+        
         body.github-hover .section-title,
         body.github-hover .metric-item,
         body.github-hover .nav a,
@@ -31,8 +36,19 @@
             color: #999;
         }
         
+        body.certificate-hover .section-title,
+        body.certificate-hover .metric-item,
+        body.certificate-hover .nav a,
+        body.certificate-hover .skill-category li {
+            color: #bbb;
+        }
+        
         body.github-hover .nav {
             border-bottom-color: #333;
+        }
+        
+        body.certificate-hover .nav {
+            border-bottom-color: #666;
         }
         
         body.github-hover .hero,
@@ -41,9 +57,20 @@
             border-top-color: #333;
         }
         
+        body.certificate-hover .hero,
+        body.certificate-hover .full-section,
+        body.certificate-hover .cta-section {
+            border-top-color: #666;
+        }
+        
         body.github-hover .metrics-banner {
             border-top-color: #333;
             border-bottom-color: #333;
+        }
+        
+        body.certificate-hover .metrics-banner {
+            border-top-color: #666;
+            border-bottom-color: #666;
         }
         
         body.github-hover .tech-badge {
@@ -51,12 +78,25 @@
             color: #ffffff;
         }
         
+        body.certificate-hover .tech-badge {
+            background: #5a5a5a;
+            color: #ffffff;
+        }
+        
         body.github-hover .result-card {
             background: #2d2d2d;
         }
         
+        body.certificate-hover .result-card {
+            background: #5a5a5a;
+        }
+        
         body.github-hover .result-card p {
             color: #999;
+        }
+        
+        body.certificate-hover .result-card p {
+            color: #bbb;
         }
         
         .container {
@@ -337,6 +377,22 @@
             color: #1a1a1a;
         }
         
+        body.certificate-hover .btn-primary {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        
+        body.certificate-hover .btn-secondary {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        
+        body.certificate-hover .btn-secondary:hover {
+            background: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .container {
@@ -601,7 +657,8 @@
         <div class="container">
             <h3>Explore the Code & Documentation</h3>
             <div class="cta-buttons">
-                <a href="https://github.com/yourprofile/tobacco-mortality-analysis" target="_blank" class="btn btn-primary" onmouseenter="document.body.classList.add('github-hover')" onmouseleave="document.body.classList.remove('github-hover')">View on GitHub</a>
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/SDG3_Smoking_Mortality" target="_blank" class="btn btn-primary" onmouseenter="document.body.classList.add('github-hover')" onmouseleave="document.body.classList.remove('github-hover')">View on GitHub</a>
+                <a href="https://github.com/ArtjomMusaelan/University_projects/tree/main/SDG3_Smoking_Mortality/Certificates" target="_blank" class="btn btn-secondary" onmouseenter="document.body.classList.add('certificate-hover')" onmouseleave="document.body.classList.remove('certificate-hover')">Course Certificates</a>
                 <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
             </div>
         </div>
