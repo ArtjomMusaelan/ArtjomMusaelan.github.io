@@ -9,13 +9,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            .social-links {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-links a:first-child {
-                border-right: none;
-            }
         }
         
         body {
@@ -38,6 +31,58 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 40px;
+        }
+        
+        /* Navigation */
+        .project-nav {
+            border-bottom: 1px solid #e5e5e5;
+            padding: 20px 0;
+            background: #ffffff;
+        }
+        
+        .project-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 0;
+            width: 100%;
+            justify-content: space-between;
+        }
+        
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #999;
+            text-decoration: none;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: #1a1a1a;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+        
+        .nav-links a:hover::after {
+            transform: scaleX(1);
         }
         
         /* Hero Section */
@@ -175,7 +220,31 @@
         }
         
         .about-content {
-            max-width: 800px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #f5f5f5;
+            margin-top: 40px;
+        }
+        
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+            opacity: 0.95;
+        }
+        
+        .about-text {
+            max-width: 700px;
         }
         
         .about h3 {
@@ -344,6 +413,16 @@
                 padding: 0 24px;
             }
             
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 16px 12px;
+                justify-content: flex-start;
+            }
+            
+            .nav-links a {
+                font-size: 11px;
+            }
+            
             .hero {
                 padding: 40px 0 30px;
                 min-height: 25vh;
@@ -376,18 +455,49 @@
                 font-size: 24px;
             }
             
-            .about p {
-                font-size: 16px;
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .about-photo {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto;
             }
             
             .clients-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
+            
+            .social-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links a:first-child {
+                border-right: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Project Navigation -->
+    <nav class="project-nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="project-tobacco.html">Project 01</a>
+                <a href="project-football.html">Project 02</a>
+                <a href="project-disaster.html">Project 03</a>
+                <a href="project-driving.html">Project 04</a>
+                <a href="project-cybersecurity.html">Project 05</a>
+                <a href="project-roots.html">Project 06</a>
+                <a href="project-NLP1.html">Project 07</a>
+                <a href="project-NLP2.html">Project 08</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -511,9 +621,14 @@
     <section class="about">
         <div class="container">
             <div class="about-content">
-                <h3>About Me</h3>
-                <p>I'm a third-year Data Science & AI student at Breda University of Applied Sciences, focusing on machine learning, computer vision, NLP and MLOps. I like building end-to-end ML systems for real clients – from data and models to deployment and monitoring – with a strong focus on reliability, explainability and GDPR/EU AI Act compliance.</p>
-                <p class="location">Based in Netherlands, Breda</p>
+                <div class="about-photo">
+                    <img src="images/my_photo.jpg" alt="Artjom Musaelans">
+                </div>
+                <div class="about-text">
+                    <h3>About Me</h3>
+                    <p>I'm a third-year Data Science & AI student at Breda University of Applied Sciences, focusing on machine learning, computer vision, NLP and MLOps. I like building end-to-end ML systems for real clients — from data and models to deployment and monitoring — with a strong focus on reliability, explainability and GDPR/EU AI Act compliance.</p>
+                    <p class="location">Based in Netherlands, Breda</p>
+                </div>
             </div>
         </div>
     </section>
@@ -527,6 +642,7 @@
                 <div class="client-item">DigiWerkplaats Breda</div>
                 <div class="client-item">ANWB Safe Driving</div>
                 <div class="client-item">NAC Breda Football Club</div>
+                <div class="client-item">Specifix</div>
             </div>
         </div>
     </section>
